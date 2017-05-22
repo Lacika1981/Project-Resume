@@ -23,18 +23,32 @@ $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);*/
 
 var bio = {
-	"name": "Laszlo Varga",
-	"role": "Web Developer",
-	"contactInfo": {
-		"mobile": "0775812345",
-		"email": "something@extra.com"
+	name: "Laszlo Varga",
+	role: "Web Developer",
+	contacts: {
+		mobile: "0775812345",
+		email: "something@extra.com",
+		github: "https://github.com/Lacika1981",
+		location: "Basingstoke"
 	},
-	"picture": "images/197x148.gif",
-	"message": "Welcome on my BIO page",
-	"skills": ["HTML", "CSS", "bootstrap", "JavaScript"]
+	welcomeMessage: "Welcome on my BIO page",
+	skills: ["HTML", "CSS", "bootstrap", "JavaScript"],
+	biopic: "images/197x148.gif",
+	display: function(){
+		Object.keys(bio).forEach(function(key){
+			var values = bio[key];
+			console.log(values);
+			var mobile = HTMLmobile.replace("%data%", "909");
+			$("#header").append(mobile);
+		})
+	}
 }
 
-var name = HTMLheaderName.replace("%data%", bio["name"]);
+bio.display();
+
+
+
+/*var name = HTMLheaderName.replace("%data%", bio["name"]);
 var role = HTMLheaderRole.replace("%data%", bio["role"]);
 
 $("#header").prepend(role);
@@ -55,4 +69,4 @@ var skills = HTMLskills.replace("%data%", bio["skills"]);
 $("#header").append(skills);
 
 var pic = HTMLbioPic.replace("%data%", bio.picture);
-$("#header").append(pic);
+$("#header").append(pic);*/
