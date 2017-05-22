@@ -36,10 +36,28 @@ var bio = {
 	biopic: "images/197x148.gif",
 	display: function(){
 		Object.keys(bio).forEach(function(key){
+			console.log(key);
 			var values = bio[key];
-			console.log(values);
-			var mobile = HTMLmobile.replace("%data%", "909");
-			$("#header").append(mobile);
+			if (key === "name" ) {
+				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
+				$("#header").append(HTMLname);
+			}
+			if (key === "role") {
+				var HTMLrole = HTMLheaderRole.replace("%data%", bio[key]);
+				$("#header").append(HTMLrole);
+			}
+			if (key === "welcomeMessage") {				
+				var HTMLmessage = HTMLwelcomeMsg.replace("%data%", bio[key]);
+				$("#header").append(HTMLmessage);
+			}
+			if (key === "skills") {
+				$("#header").append(HTMLskillsStart);
+				bio["skills"].forEach(function(x){
+					var HTMLskill = HTMLskills.replace("%data%", x);
+					$("#header").append(HTMLskill);
+
+				})
+			}
 		})
 	}
 }
