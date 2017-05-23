@@ -38,25 +38,35 @@ var bio = {
 		Object.keys(bio).forEach(function(key){
 			console.log(key);
 			var values = bio[key];
-			if (key === "name" ) {
+			switch (key) {
+				case "name":
 				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
 				$("#header").append(HTMLname);
-			}
-			if (key === "role") {
+				break
+
+				case "role":
 				var HTMLrole = HTMLheaderRole.replace("%data%", bio[key]);
 				$("#header").append(HTMLrole);
-			}
-			if (key === "welcomeMessage") {				
+				break
+
+				case "welcomeMessage":
 				var HTMLmessage = HTMLwelcomeMsg.replace("%data%", bio[key]);
 				$("#header").append(HTMLmessage);
-			}
-			if (key === "skills") {
+				break
+
+				case "skills":
 				$("#header").append(HTMLskillsStart);
 				bio["skills"].forEach(function(x){
 					var HTMLskill = HTMLskills.replace("%data%", x);
 					$("#header").append(HTMLskill);
 
 				})
+				break
+
+				case "biopic":
+				var pic = HTMLbioPic.replace("%data%", bio[key]);
+				$("#header").append(pic);
+				break
 			}
 		})
 	}
