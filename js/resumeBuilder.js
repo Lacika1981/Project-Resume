@@ -2,25 +2,10 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
-/*var firstName = "Laszlo";
-var age = 36;
-console.log(firstName);
-
-
-var awesomeThoughts = "I am Laszlo Varga and I am AWESOME";
-console.log(awesomeThoughts);
-var funThoughts = awesomeThoughts.replace("AWESOME", "FUN");
-
-$("#main").append(funThoughts);*/
-
-/*var name = "Laszlo Varga";
-var role = "Web Developer";
-
-var formattedName = HTMLheaderName.replace("%data%", name);
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);*/
+var HTMLtemplate = {
+	name: HTMLheaderName,
+	role: HTMLheaderRole
+};
 
 var bio = {
 	name: "Laszlo Varga",
@@ -34,9 +19,8 @@ var bio = {
 	welcomeMessage: "Welcome on my BIO page",
 	skills: ["HTML", "CSS", "bootstrap", "JavaScript"],
 	biopic: "images/197x148.gif",
-	display: function(){
+	/*display: function(){
 		Object.keys(bio).forEach(function(key){
-			console.log(key);
 			var values = bio[key];
 			switch (key) {
 				case "name":
@@ -67,39 +51,55 @@ var bio = {
 				var pic = HTMLbioPic.replace("%data%", bio[key]);
 				$("#header").append(pic);
 				break
+
+				case "contacts" :
+				Object.keys(bio.contacts).forEach(function(contact){
+					switch (contact) {
+						case "mobile":
+						var mobile = HTMLmobile.replace("%data%", bio.contacts[contact]);
+						$("#header").append(mobile);
+						break
+
+						case "email":
+						var email = HTMLemail.replace("%data%", bio.contacts[contact]);
+						$("#header").append(email);
+						break
+
+						case "github":
+						var github = HTMLgithub.replace("%data%", bio.contacts[contact]);
+						$("#header").append(github);
+						break
+
+						case "location":
+						var location = HTMLlocation.replace("%data%", bio.contacts[contact]);
+						$("#header").append(location);
+						break
+					}
+				})
 			}
 		})
 		
+	}*/
+	display: function(){
+		
+	},
+	helper: function(val){
+		val = Object.keys(bio).map(function(bioKey){
+			return bioKey;
+		});
+		kej = Object.keys(HTMLtemplate).map(function(key){
+			return key;
+			
+		});
+		for (i = 0; i < val.length; i++){
+			for (j = 0; j < kej.length; j++){
+if (i === j){
+			}
+		}
+		
+		}
 	}
-}
+};
 
 bio.display();
-
-
-
-
-
-
-
-/*var name = HTMLheaderName.replace("%data%", bio["name"]);
-var role = HTMLheaderRole.replace("%data%", bio["role"]);
-
-$("#header").prepend(role);
-$("#header").prepend(name);
-
-var mobile = HTMLmobile.replace("%data%", bio.contactInfo.mobile);
-$("#header").append(mobile);
-
-var email = HTMLemail.replace("%data%", bio["contactInfo"]["email"]);
-$("#header").append(email);
-
-var welcomeMsg = HTMLwelcomeMsg.replace("%data%", bio["message"]);
-$("#header").append(welcomeMsg);
-
-$("#header").append(HTMLskillsStart);
-
-var skills = HTMLskills.replace("%data%", bio["skills"]);
-$("#header").append(skills);
-
-var pic = HTMLbioPic.replace("%data%", bio.picture);
-$("#header").append(pic);*/
+bio.helper();
