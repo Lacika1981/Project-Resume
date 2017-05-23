@@ -35,11 +35,39 @@ var bio = {
 	skills: ["HTML", "CSS", "bootstrap", "JavaScript"],
 	biopic: "images/197x148.gif",
 	display: function(){
-		var keys = Object.keys(bio);
-		keys.forEach(function(key){
+		Object.keys(bio).forEach(function(key){
+			console.log(key);
 			var values = bio[key];
+			switch (key) {
+				case "name":
+				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
+				$("#header").append(HTMLname);
+				break
 
-			console.log(values);
+				case "role":
+				var HTMLrole = HTMLheaderRole.replace("%data%", bio[key]);
+				$("#header").append(HTMLrole);
+				break
+
+				case "welcomeMessage":
+				var HTMLmessage = HTMLwelcomeMsg.replace("%data%", bio[key]);
+				$("#header").append(HTMLmessage);
+				break
+
+				case "skills":
+				$("#header").append(HTMLskillsStart);
+				bio["skills"].forEach(function(x){
+					var HTMLskill = HTMLskills.replace("%data%", x);
+					$("#header").append(HTMLskill);
+
+				})
+				break
+
+				case "biopic":
+				var pic = HTMLbioPic.replace("%data%", bio[key]);
+				$("#header").append(pic);
+				break
+			}
 		})
 		
 	}
