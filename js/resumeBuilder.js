@@ -35,16 +35,21 @@ var bio = {
 	skills: ["HTML", "CSS", "bootstrap", "JavaScript"],
 	biopic: "images/197x148.gif",
 	display: function(){
-		Object.keys(bio).forEach(function(key){
+		var keys = Object.keys(bio);
+		keys.forEach(function(key){
 			var values = bio[key];
+
 			console.log(values);
-			var mobile = HTMLmobile.replace("%data%", "909");
-			$("#header").append(mobile);
 		})
+		
 	}
 }
 
 bio.display();
+
+
+
+
 
 
 
