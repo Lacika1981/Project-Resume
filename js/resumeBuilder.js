@@ -2,11 +2,6 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
-var HTMLtemplate = {
-	name: HTMLheaderName,
-	role: HTMLheaderRole
-};
-
 var bio = {
 	name: "Laszlo Varga",
 	role: "Web Developer",
@@ -91,55 +86,127 @@ var education = {
 			"location": "Győr, Hungary",
 			"degree": "GCSE",
 			"major": ["Network configuration"],
-			"dates": "2006 - 2007",
+			"dates": "2006-2007",
 			"url": "http://www.jaisz.hu/"
 		},
 		{
 			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
 			"location": "Győr, Hungary",
 			"degree": "GCSE",
-			"major": ["CNC machining","Microsoft Office"],
-			"dates": "2001 - 2002",
+			"major": ["CNC machining", "Microsoft Office"],
+			"dates": "2001-2002",
 			"url": "http://www.jaisz.hu/"
 		},
 		{
 			"name": "Pápai Református Kollégium Gimnáziuma és Művészeti Szakgimnáziuma",
 			"location": "Pápa, Hungary",
 			"degree": "GCSE",
-			"major": ["Math, Physics, Chemistry, Literal"],
-			"dates": "1995 - 1999",
+			"major": ["Math", "Physics", "Chemistry", "Literal"],
+			"dates": "1995-1999",
 			"url": "http://http://refi-papa.hu//"
 		}
 	],
-	"onlineCourses": {
-		"title": "Front End Web Developer",
-		"school": "Udacity",
-		"dates": "2017",
-		"url": "https://www.udacity.com/"
+	"onlineCourses": [
+		{
+			"title": "Front End Web Developer",
+			"school": "Udacity",
+			"dates": "2017",
+			"url": "https://www.udacity.com/"
+		}
+	],
+	display: function () {
+
+		var HTMLtemplate = [
+			HTMLschoolName,
+			HTMLschoolDegree,
+			HTMLschoolDates,
+			HTMLschoolLocation,
+			HTMLschoolMajor,
+			HTMLonlineTitle,
+			HTMLonlineSchool,
+			HTMLonlineDates,
+			HTMLonlineURL
+		]
+
+		education.schools.forEach(function(school){
+			var keys = Object.keys(school);
+			keys.forEach(function(key, i){
+				var formattedContent = HTMLtemplate[i].replace("%data%", school[key]);
+				$("#main").append(formattedContent);
+			})
+		})
 	}
 }
 
+education.display();
+
 var work = {
+
 	"jobs": [
 		{
 			"employer": "Audi Hungaria Zrt.",
 			"title": "CNC Operator",
 			"location": "Győr, Hungary",
-			"dates": "2002 - 2008",
+			"dates": "2002-2008",
 			"description": "Manufacturing camshafts"
 		},
 		{
 			"employer": "J Sainsbury's",
 			"title": "Picker",
-			"location": "Basingstoke, england",
-			"dates": "2010 -",
+			"location": "Basingstoke, England",
+			"dates": "2010",
 			"description": "Food distributing"
 		}
-	]
+		],
+	display: function () {
+
+		var HTMLtemplate = [
+			HTMLworkEmployer,
+			HTMLworkTitle,
+			HTMLworkLocation,
+			HTMLworkDates,
+			HTMLworkDescription
+]
+
+		work.jobs.forEach(function(works){
+			var keys = Object.keys(works);
+			keys.forEach(function(key, i){
+				var formattedContent = HTMLtemplate[i].replace("%data%", works[key]);
+				$("#main").append(formattedContent);
+			})
+		})
+	}
 }
+
+work.display();
 
 var projects = {
 	"projects": [
-		"title": 
-	]
+		{
+			"title": "Build a Portfolio",
+			"dates": "12-05-2017",
+			"description": "First project on Udacity",
+			"images": ["images/project-image-1.png"]
+		}
+	],
+	
+	display: function () {
+
+		var HTMLtemplate = [
+			HTMLprojectTitle,
+			HTMLprojectDates,
+			HTMLprojectDescription,
+			HTMLprojectImage
+		]
+
+		projects.projects.forEach(function(project){
+			var keys = Object.keys(project);
+			keys.forEach(function(key, i){
+				var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
+				$("#main").append(formattedContent);
+			})
+		})
 }
+}
+
+projects.display();
