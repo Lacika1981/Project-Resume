@@ -34,12 +34,15 @@ var bio = {
 					break
 
 				case "skills":
+				if (bio.skills.length > 0) {
 					$("#header").append(HTMLskillsStart);
 					bio["skills"].forEach(function (x) {
 						var HTMLskill = HTMLskills.replace("%data%", x);
 						$("#header").append(HTMLskill);
 
 					})
+				}
+					
 					break
 
 				case "biopic":
