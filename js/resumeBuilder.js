@@ -171,13 +171,29 @@ var work = {
 			HTMLworkDescription
 ]
 
-		work.jobs.forEach(function(works){
+		var jobsObject = work.jobs;
+		for (job in jobsObject) {
+			if (jobsObject.hasOwnProperty(job)) {
+				$("#workExperience").append(HTMLworkStart);
+				var keys = Object.keys(jobsObject[job]);
+				keys.forEach(function(key, i){
+				var formattedContent = HTMLtemplate[i].replace("%data%", jobsObject[job][key]);				
+				console.log(formattedContent);
+				$("#workExperience").append(formattedContent);
+			})
+			}
+
+			
+			
+		}
+
+		/*work.jobs.forEach(function(works){
 			var keys = Object.keys(works);
 			keys.forEach(function(key, i){
 				var formattedContent = HTMLtemplate[i].replace("%data%", works[key]);
 				$("#main").append(formattedContent);
 			})
-		})
+		})*/
 	}
 }
 
