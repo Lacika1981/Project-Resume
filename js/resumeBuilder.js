@@ -178,9 +178,15 @@ var work = {
 				var a = jobsObject[job]; // get object key value pairs
 				var b = Object.keys(a); // get keys of Objects
 				b.forEach(function(key,i){ // iterate through ths key of Objects
+					if (i < 1){
+						var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
+						var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
+						var formattedET = formattedEmployer.concat(formattedTitle);
+						$(".work-entry:last").append(formattedET);						
+					} else {
 						var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
-						console.log(a[key]);
 						$(".work-entry:last").append(formattedContent);
+					}
 				})
 			}		
 		}
