@@ -119,23 +119,37 @@ var education = {
 	],
 	display: function () {
 
-		var HTMLtemplate = [
+		var HTMLschoolTemplate = [
 			HTMLschoolName,
-			HTMLschoolDegree,
-			HTMLschoolDates,
 			HTMLschoolLocation,
+			HTMLschoolDegree,						
 			HTMLschoolMajor,
+			HTMLschoolDates,
+			HTMLonlineURL			
+		];
+
+		var HTMLonlineTemplate = [
 			HTMLonlineTitle,
 			HTMLonlineSchool,
 			HTMLonlineDates,
 			HTMLonlineURL
-		]
+		];
 
 		education.schools.forEach(function(school){
+			$("#education").append(HTMLschoolStart);
 			var keys = Object.keys(school);
 			keys.forEach(function(key, i){
-				var formattedContent = HTMLtemplate[i].replace("%data%", school[key]);
-				$("#main").append(formattedContent);
+				var formattedContent = HTMLschoolTemplate[i].replace("%data%", school[key]);
+				$(".education-entry:last").append(formattedContent);
+			})
+		})
+
+		education.onlineCourses.forEach(function(online){
+			var keys = Object.keys(online);
+			keys.forEach(function(key, i){
+				var formattedContent = HTMLonlineTemplate[i].replace("%data%", online[key]);
+				console.log(formattedContent);
+				$(".education-entry:last").append(formattedContent);
 			})
 		})
 	}
@@ -143,7 +157,8 @@ var education = {
 
 education.display();
 
-var work = {
+function displayWork() {
+	var work = {
 
 	"jobs": [
 		{
@@ -182,7 +197,7 @@ var work = {
 						var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
 						var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
 						var formattedET = formattedEmployer.concat(formattedTitle);
-						$(".work-entry:last").append(formattedET);						
+						$(".work-entry:last").append(formattedET);
 					} else {
 						var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
 						$(".work-entry:last").append(formattedContent);
@@ -194,6 +209,9 @@ var work = {
 }
 
 work.display();
+}
+
+displayWork();
 
 var projects = {
 	"projects": [
@@ -215,10 +233,11 @@ var projects = {
 		]
 
 		projects.projects.forEach(function(project){
+			$("#projects").append(HTMLprojectStart);
 			var keys = Object.keys(project);
 			keys.forEach(function(key, i){
 				var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
-				$("#main").append(formattedContent);
+				$(".project-entry:last").append(formattedContent);
 			})
 		})
 }
