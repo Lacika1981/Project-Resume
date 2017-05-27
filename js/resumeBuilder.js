@@ -34,15 +34,15 @@ var bio = {
 					break
 
 				case "skills":
-				if (bio.skills.length > 0) {
-					$("#header").append(HTMLskillsStart);
-					bio["skills"].forEach(function (x) {
-						var HTMLskill = HTMLskills.replace("%data%", x);
-						$("#header").append(HTMLskill);
+					if (bio.skills.length > 0) {
+						$("#header").append(HTMLskillsStart);
+						bio["skills"].forEach(function (x) {
+							var HTMLskill = HTMLskills.replace("%data%", x);
+							$("#header").append(HTMLskill);
 
-					})
-				}
-					
+						})
+					}
+
 					break
 
 				case "biopic":
@@ -81,61 +81,75 @@ var bio = {
 
 bio.display();
 
+function school(obj) {
+	var education = {
+		"schools": [
+			{
+				"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
+				"location": "Győr, Hungary",
+				"degree": "GCSE",
+				"major": ["Network configuration"],
+				"dates": "2006-2007",
+				"url": "http://www.jaisz.hu/"
+			},
+			{
+				"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
+				"location": "Győr, Hungary",
+				"degree": "GCSE",
+				"major": ["CNC machining", "Microsoft Office"],
+				"dates": "2001-2002",
+				"url": "http://www.jaisz.hu/"
+			},
+			{
+				"name": "Pápai Református Kollégium Gimnáziuma és Művészeti Szakgimnáziuma",
+				"location": "Pápa, Hungary",
+				"degree": "GCSE",
+				"major": ["Math", "Physics", "Chemistry", "Literal"],
+				"dates": "1995-1999",
+				"url": "http://http://refi-papa.hu//"
+			}
+		],
+		"onlineCourses": [
+			{
+				"title": "Front End Web Developer",
+				"school": "Udacity",
+				"dates": "2017",
+				"url": "https://www.udacity.com/"
+			}
+		],
+		display: function () {
 
-var education = {
-	"schools": [
-		{
-			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
-			"location": "Győr, Hungary",
-			"degree": "GCSE",
-			"major": ["Network configuration"],
-			"dates": "2006-2007",
-			"url": "http://www.jaisz.hu/"
-		},
-		{
-			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
-			"location": "Győr, Hungary",
-			"degree": "GCSE",
-			"major": ["CNC machining", "Microsoft Office"],
-			"dates": "2001-2002",
-			"url": "http://www.jaisz.hu/"
-		},
-		{
-			"name": "Pápai Református Kollégium Gimnáziuma és Művészeti Szakgimnáziuma",
-			"location": "Pápa, Hungary",
-			"degree": "GCSE",
-			"major": ["Math", "Physics", "Chemistry", "Literal"],
-			"dates": "1995-1999",
-			"url": "http://http://refi-papa.hu//"
+			var HTMLschoolTemplate = [
+				[
+					HTMLschoolName,
+					HTMLschoolLocation,
+					HTMLschoolDegree,
+					HTMLschoolMajor,
+					HTMLschoolDates,
+					HTMLonlineURL
+				],
+				[
+					HTMLonlineTitle,
+					HTMLonlineSchool,
+					HTMLonlineDates,
+					HTMLonlineURL
+				]
+			]
+
+
+			education[obj].forEach(function (school) {
+				$("#education").append(HTMLschoolStart);
+				var keys = Object.keys(school);
+				keys.forEach(function (key, i) {
+					console.log(key,i);
+					var formattedContent = HTMLschoolTemplate[0][i].replace("%data%", school[key]);
+					console.log(formattedContent);
+					$(".education-entry:last").append(formattedContent);
+				})
+			})
 		}
-	],
-	"onlineCourses": [
-		{
-			"title": "Front End Web Developer",
-			"school": "Udacity",
-			"dates": "2017",
-			"url": "https://www.udacity.com/"
-		}
-	],
-	display: function () {
 
-		var HTMLschoolTemplate = [
-			HTMLschoolName,
-			HTMLschoolLocation,
-			HTMLschoolDegree,						
-			HTMLschoolMajor,
-			HTMLschoolDates,
-			HTMLonlineURL			
-		];
-
-		var HTMLonlineTemplate = [
-			HTMLonlineTitle,
-			HTMLonlineSchool,
-			HTMLonlineDates,
-			HTMLonlineURL
-		];
-
-		education.schools.forEach(function(school){
+		/*education.schools.forEach(function(school){
 			$("#education").append(HTMLschoolStart);
 			var keys = Object.keys(school);
 			keys.forEach(function(key, i){
@@ -151,64 +165,67 @@ var education = {
 				console.log(formattedContent);
 				$(".education-entry:last").append(formattedContent);
 			})
-		})
+		})*/
+		
 	}
-}
 
 education.display();
+}
+
+school("schools");
 
 function displayWork() {
 	var work = {
 
-	"jobs": [
-		{
-			"employer": "Audi Hungaria Zrt.",
-			"title": "CNC Operator",
-			"location": "Győr, Hungary",
-			"dates": "2002-2008",
-			"description": "Manufacturing camshafts"
-		},
-		{
-			"employer": "J Sainsbury's",
-			"title": "Picker",
-			"location": "Basingstoke, England",
-			"dates": "2010",
-			"description": "Food distributing"
-		}
+		"jobs": [
+			{
+				"employer": "Audi Hungaria Zrt.",
+				"title": "CNC Operator",
+				"location": "Győr, Hungary",
+				"dates": "2002-2008",
+				"description": "Manufacturing camshafts"
+			},
+			{
+				"employer": "J Sainsbury's",
+				"title": "Picker",
+				"location": "Basingstoke, England",
+				"dates": "2010",
+				"description": "Food distributing"
+			}
 		],
-	display: function () {
+		display: function () {
 
-		var HTMLtemplate = [
-			HTMLworkEmployer,
-			HTMLworkTitle,
-			HTMLworkLocation,
-			HTMLworkDates,
-			HTMLworkDescription
-]
+			var HTMLtemplate = [
+				HTMLworkEmployer,
+				HTMLworkTitle,
+				HTMLworkLocation,
+				HTMLworkDates,
+				HTMLworkDescription
+			]
 
-		var jobsObject = work.jobs;
-		for (job in jobsObject) {
-			if (jobsObject.hasOwnProperty(job)) {
-				$("#workExperience").append(HTMLworkStart);
-				var a = jobsObject[job]; // get object key value pairs
-				var b = Object.keys(a); // get keys of Objects
-				b.forEach(function(key,i){ // iterate through ths key of Objects
-					if (i < 1){
-						var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
-						var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
-						var formattedET = formattedEmployer.concat(formattedTitle);
-						$(".work-entry:last").append(formattedET);
-					} else {
-						var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
-						$(".work-entry:last").append(formattedContent);
-					}
-				})
-			}		
+			var jobsObject = work.jobs;
+			for (job in jobsObject) {
+				if (jobsObject.hasOwnProperty(job)) {
+					$("#workExperience").append(HTMLworkStart);
+					var a = jobsObject[job]; // get object key value pairs
+					var b = Object.keys(a); // get keys of Objects
+					b.forEach(function (key, i) { // iterate through ths key of Objects
+						if (i < 1) {
+							var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
+							var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
+							var formattedET = formattedEmployer.concat(formattedTitle);
+							$(".work-entry:last").append(formattedET);
+						} else {
+							var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
+							$(".work-entry:last").append(formattedContent);
+						}
+					})
+				}
+			}
 		}
 	}
-}
 
-work.display();
+	work.display();
 }
 
 displayWork();
@@ -222,7 +239,7 @@ var projects = {
 			"images": ["images/project-image-1.png"]
 		}
 	],
-	
+
 	display: function () {
 
 		var HTMLtemplate = [
@@ -232,15 +249,15 @@ var projects = {
 			HTMLprojectImage
 		]
 
-		projects.projects.forEach(function(project){
+		projects.projects.forEach(function (project) {
 			$("#projects").append(HTMLprojectStart);
 			var keys = Object.keys(project);
-			keys.forEach(function(key, i){
+			keys.forEach(function (key, i) {
 				var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
 				$(".project-entry:last").append(formattedContent);
 			})
 		})
-}
+	}
 }
 
 projects.display();
