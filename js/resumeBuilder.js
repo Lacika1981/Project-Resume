@@ -437,15 +437,14 @@ console.log(locationizer(work));
 $("#main").append(internationalizeButton);
 
 function inName(name){
-	name = bio["name"];
-    var oldNameSplit = name.split(' ');
-    var firstChar = oldNameSplit[0].charAt(0).toUpperCase();
-    var firstName = firstChar + oldNameSplit[0].slice(1).toLowerCase() + " ";
-    var lastName = oldNameSplit[1].toUpperCase();
+	name = bio.name;
+    var oldNameSplit = name.trim().split(' ');
+	var firstName = oldNameSplit[0];
+	var lastName = oldNameSplit[1];
+    firstName = firstName.slice(0,1).toUpperCase() + firstName.slice(1).toLowerCase();
+	lastName = lastName.toUpperCase();
     
-    name = firstName.concat(lastName);
-
+    name = firstName + " " + lastName;
 	console.log(name);
+	return name;
 }
-
-inName("Laszlo Varga");
