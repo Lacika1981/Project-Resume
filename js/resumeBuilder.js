@@ -251,22 +251,20 @@ projects.display = function () {
 		HTMLprojectImage
 	];
 
-	for (project in projects) {
+	for (project in projects) { // checking the keys in the object
 		$("#projects").append(HTMLprojectStart);
-		if (typeof projects[project] === "object") {
-			projects[project].forEach(function (project) {
-				var keys = Object.keys(project);
+		if (typeof projects[project] === "object") { // checking if the key is an object
+			projects[project].forEach(function (project) { // iterating through the array in the object
+				var keys = Object.keys(project); // getting the keys of the object inside the array and return them in an array
 				keys.forEach(function (key, i) {
-					if (key !== "images") {
+					if (key !== "images") { //checking if the key is not equal to the key image
 						var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
 						$(".project-entry:last").append(formattedContent);
 					} else {
-						if (project[key].length > 0) {
-							project[key].forEach(function (image) {
-								var formattedImage = HTMLtemplate[3].replace("%data%", image);
-								$(".project-entry:last").append(formattedImage);
-							})
-						}
+						project[key].forEach(function (image) { //getting the elements of the array
+							var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
+							$(".project-entry:last").append(formattedImage);
+						})
 					}
 				})
 			})
