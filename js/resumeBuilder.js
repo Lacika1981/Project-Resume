@@ -237,28 +237,41 @@ var projects = {
 			"title": "Build a Portfolio",
 			"dates": "12-05-2017",
 			"description": "First project on Udacity",
-			"images": ["images/project-image-1.png"]
+			"images": ["images/project-image-1.png", "images/project-image-1.png"]
 		}
-	],
-	
-	display: function () {
-
-		var HTMLtemplate = [
-			HTMLprojectTitle,
-			HTMLprojectDates,
-			HTMLprojectDescription,
-			HTMLprojectImage
-		]
-
-		projects.projects.forEach(function(project){
-			$("#projects").append(HTMLprojectStart);
-			var keys = Object.keys(project);
-			keys.forEach(function(key, i){
-				var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
-				$(".project-entry:last").append(formattedContent);
-			})
-		})
+	]
 }
+
+projects.display = function () {
+
+	var HTMLtemplate = [
+		HTMLprojectTitle,
+		HTMLprojectDates,
+		HTMLprojectDescription,
+		HTMLprojectImage
+	];
+
+	for (project in projects) { // checking the keys in the object
+		$("#projects").append(HTMLprojectStart);
+		if (typeof projects[project] === "object") { // checking if the key is an object
+			projects[project].forEach(function (project) { // iterating through the array in the object
+				var keys = Object.keys(project); // getting the keys of the object inside the array and return them in an array
+				keys.forEach(function (key, i) {
+					if (key !== "images") { //checking if the key is not equal to the key image
+						var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
+						$(".project-entry:last").append(formattedContent);
+					} else {
+						if (project[key].length > 0) { // checking if there is any images in the array
+							project[key].forEach(function (image) { //getting the elements of the array
+								var formattedImage = HTMLtemplate[3].replace("%data%", image);
+								$(".project-entry:last").append(formattedImage);
+							})
+						}
+					}
+				})
+			})
+		}
+	}
 }
 
 projects.display();
