@@ -34,15 +34,15 @@ var bio = {
 					break
 
 				case "skills":
-				if (bio.skills.length > 0) {
-					$("#header").append(HTMLskillsStart);
-					bio["skills"].forEach(function (x) {
-						var HTMLskill = HTMLskills.replace("%data%", x);
-						$("#header").append(HTMLskill);
+					if (bio.skills.length > 0) {
+						$("#header").append(HTMLskillsStart);
+						bio["skills"].forEach(function (x) {
+							var HTMLskill = HTMLskills.replace("%data%", x);
+							$("#header").append(HTMLskill);
 
-					})
-				}
-					
+						})
+					}
+
 					break
 
 				case "biopic":
@@ -120,22 +120,22 @@ function school() {
 		],
 		display: function () {
 
-			var counter = (function() {
-			  var privateCounter = 0;
-			  function changeBy(val) {
-			    privateCounter += val;
-			  }
-			  return {
-			    increment: function() {
-			      changeBy(1);
-			    },
-			    decrement: function() {
-			      changeBy(-1);
-			    },
-			    value: function() {
-			      return privateCounter;
-			    }
-			  };   
+			var counter = (function () {
+				var privateCounter = 0;
+				function changeBy(val) {
+					privateCounter += val;
+				}
+				return {
+					increment: function () {
+						changeBy(1);
+					},
+					decrement: function () {
+						changeBy(-1);
+					},
+					value: function () {
+						return privateCounter;
+					}
+				};
 			})();
 
 			var HTMLschoolTemplate = [
@@ -168,7 +168,7 @@ function school() {
 					counter.increment();
 				}
 			}
-		}		
+		}
 	}
 	education.display();
 }
@@ -178,55 +178,55 @@ school();
 function displayWork() {
 	var work = {
 
-	"jobs": [
-		{
-			"employer": "Audi Hungaria Zrt.",
-			"title": "CNC Operator",
-			"location": "Győr, Hungary",
-			"dates": "2002-2008",
-			"description": "Manufacturing camshafts"
-		},
-		{
-			"employer": "J Sainsbury's",
-			"title": "Picker",
-			"location": "Basingstoke, England",
-			"dates": "2010",
-			"description": "Food distributing"
-		}
+		"jobs": [
+			{
+				"employer": "Audi Hungaria Zrt.",
+				"title": "CNC Operator",
+				"location": "Győr, Hungary",
+				"dates": "2002-2008",
+				"description": "Manufacturing camshafts"
+			},
+			{
+				"employer": "J Sainsbury's",
+				"title": "Picker",
+				"location": "Basingstoke, England",
+				"dates": "2010",
+				"description": "Food distributing"
+			}
 		],
-	display: function () {
+		display: function () {
 
-		var HTMLtemplate = [
-			HTMLworkEmployer,
-			HTMLworkTitle,
-			HTMLworkLocation,
-			HTMLworkDates,
-			HTMLworkDescription
-]
+			var HTMLtemplate = [
+				HTMLworkEmployer,
+				HTMLworkTitle,
+				HTMLworkLocation,
+				HTMLworkDates,
+				HTMLworkDescription
+			]
 
-		var jobsObject = work.jobs;
-		for (job in jobsObject) {
-			if (jobsObject.hasOwnProperty(job)) {
-				$("#workExperience").append(HTMLworkStart);
-				var a = jobsObject[job]; // get object key value pairs
-				var b = Object.keys(a); // get keys of Objects
-				b.forEach(function(key,i){ // iterate through ths key of Objects
-					if (i < 1){
-						var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
-						var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
-						var formattedET = formattedEmployer.concat(formattedTitle);
-						$(".work-entry:last").append(formattedET);
-					} else {
-						var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
-						$(".work-entry:last").append(formattedContent);
-					}
-				})
-			}		
+			var jobsObject = work.jobs;
+			for (job in jobsObject) {
+				if (jobsObject.hasOwnProperty(job)) {
+					$("#workExperience").append(HTMLworkStart);
+					var a = jobsObject[job]; // get object key value pairs
+					var b = Object.keys(a); // get keys of Objects
+					b.forEach(function (key, i) { // iterate through ths key of Objects
+						if (i < 1) {
+							var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
+							var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
+							var formattedET = formattedEmployer.concat(formattedTitle);
+							$(".work-entry:last").append(formattedET);
+						} else {
+							var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
+							$(".work-entry:last").append(formattedContent);
+						}
+					})
+				}
+			}
 		}
 	}
-}
 
-work.display();
+	work.display();
 }
 
 displayWork();
@@ -261,12 +261,10 @@ projects.display = function () {
 						var formattedContent = HTMLtemplate[i].replace("%data%", project[key]);
 						$(".project-entry:last").append(formattedContent);
 					} else {
-						if (project[key].length > 0) { // checking if there is any images in the array
-							project[key].forEach(function (image) { //getting the elements of the array
-								var formattedImage = HTMLtemplate[3].replace("%data%", image);
-								$(".project-entry:last").append(formattedImage);
-							})
-						}
+						project[key].forEach(function (image) { //getting the elements of the array
+							var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
+							$(".project-entry:last").append(formattedImage);
+						})
 					}
 				})
 			})
@@ -449,15 +447,14 @@ console.log(locationizer(work));
 
 $("#main").append(internationalizeButton);
 
-function inName(name){
+function inName(name) {
 	name = bio.name;
-    var oldNameSplit = name.trim().split(' ');
+	var oldNameSplit = name.trim().split(' ');
 	var firstName = oldNameSplit[0];
 	var lastName = oldNameSplit[1];
-    firstName = firstName.slice(0,1).toUpperCase() + firstName.slice(1).toLowerCase();
+	firstName = firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase();
 	lastName = lastName.toUpperCase();
-    
-    name = firstName + " " + lastName;
-	console.log(name);
+
+	name = firstName + " " + lastName;
 	return name;
 }
