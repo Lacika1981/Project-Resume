@@ -175,61 +175,7 @@ function school() {
 school();
 
 
-function displayWork() {
-	var work = {
 
-		"jobs": [
-			{
-				"employer": "Audi Hungaria Zrt.",
-				"title": "CNC Operator",
-				"location": "Győr, Hungary",
-				"dates": "2002-2008",
-				"description": "Manufacturing camshafts"
-			},
-			{
-				"employer": "J Sainsbury's",
-				"title": "Picker",
-				"location": "Basingstoke, England",
-				"dates": "2010",
-				"description": "Food distributing"
-			}
-		],
-		display: function () {
-
-			var HTMLtemplate = [
-				HTMLworkEmployer,
-				HTMLworkTitle,
-				HTMLworkLocation,
-				HTMLworkDates,
-				HTMLworkDescription
-			]
-
-			var jobsObject = work.jobs;
-			for (job in jobsObject) {
-				if (jobsObject.hasOwnProperty(job)) {
-					$("#workExperience").append(HTMLworkStart);
-					var a = jobsObject[job]; // get object key value pairs
-					var b = Object.keys(a); // get keys of Objects
-					b.forEach(function (key, i) { // iterate through ths key of Objects
-						if (i < 1) {
-							var formattedEmployer = HTMLtemplate[0].replace("%data%", a["employer"]);
-							var formattedTitle = HTMLtemplate[1].replace("%data%", a["title"]);
-							var formattedET = formattedEmployer.concat(formattedTitle);
-							$(".work-entry:last").append(formattedET);
-						} else {
-							var formattedContent = HTMLtemplate[i].replace("%data%", a[key]);
-							$(".work-entry:last").append(formattedContent);
-						}
-					})
-				}
-			}
-		}
-	}
-
-	work.display();
-}
-
-displayWork();
 
 var projects = {
 	"projects": [
@@ -442,7 +388,7 @@ function locationizer(work_obj) {
 }
 
 // Did locationizer() work? This line will tell you!
-console.log(locationizer(work));
+//console.log(locationizer(work));
 
 
 $("#main").append(internationalizeButton);
@@ -458,3 +404,77 @@ function inName(name) {
 	name = firstName + " " + lastName;
 	return name;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function displayWork() {
+	var work = {
+
+		"jobs": [
+			{
+				"employer": "Audi Hungaria Zrt.",
+				"title": "CNC Operator",
+				"location": "Győr, Hungary",
+				"dates": "2002-2008",
+				"description": "Manufacturing camshafts"
+			},
+			{
+				"employer": "J Sainsbury's",
+				"title": "Picker",
+				"location": "Basingstoke, England",
+				"dates": "2010",
+				"description": "Food distributing"
+			}
+		],
+		display: function () {
+
+			var HTMLtemplate = [
+				HTMLworkEmployer,
+				HTMLworkTitle,
+				HTMLworkLocation,
+				HTMLworkDates,
+				HTMLworkDescription
+			]
+
+			var jobsArray = work.jobs;
+			jobsArray.forEach(function (job) {
+				var a = [];
+				$("#workExperience").append(HTMLworkStart);
+				var jobKeys = Object.keys(job);
+				jobKeys.forEach(function(key,i){
+					if (key === "title") {
+						var formattedT = HTMLtemplate[i].replace("%data%", job[key]);
+						a.push(formattedT);
+					}
+					if (key === "employer") {
+						var formattedE = HTMLtemplate[i].replace("%data%", job[key]);
+						a.push(formattedE);
+					
+					} else {
+					var formattedContent = HTMLtemplate[i].replace("%data%", job[key]);
+					$(".work-entry:last").append(formattedContent);
+					}
+				}); console.log(a.join(""));
+		})
+		}
+	}
+
+	work.display();
+}
+
+displayWork();
