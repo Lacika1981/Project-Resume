@@ -442,7 +442,6 @@ function displayWork() {
 			}
 		],
 		display: function () {
-
 			var HTMLtemplate = [
 				HTMLworkEmployer,
 				HTMLworkTitle,
@@ -453,27 +452,26 @@ function displayWork() {
 
 			var jobsArray = work.jobs;
 			jobsArray.forEach(function (job) {
-				var a = [];
+				var formArray = [];
 				$("#workExperience").append(HTMLworkStart);
 				var jobKeys = Object.keys(job);
-				jobKeys.forEach(function(key,i){
-					if (key === "title") {
-						var formattedT = HTMLtemplate[i].replace("%data%", job[key]);
-						a.push(formattedT);
-					}
-					if (key === "employer") {
-						var formattedE = HTMLtemplate[i].replace("%data%", job[key]);
-						a.push(formattedE);
-					
-					} else {
+				jobKeys.forEach(function (key, i) {
 					var formattedContent = HTMLtemplate[i].replace("%data%", job[key]);
-					$(".work-entry:last").append(formattedContent);
+					formArray.push(formattedContent);
+					//$(".work-entry:last").append(formattedContent);					
+				});
+				console.log(formArray);
+				for(j = 0; j < formArray.length; j++){
+					if (j === 0) {
+						var c = formArray[0].concat(formArray[1]);
+						$(".work-entry:last").append(c);
+					} if (j > 1) {
+						$(".work-entry:last").append(formArray[j]);	
 					}
-				}); console.log(a.join(""));
-		})
+				}
+			})
 		}
 	}
-
 	work.display();
 }
 
