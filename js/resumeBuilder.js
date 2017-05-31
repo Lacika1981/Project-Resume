@@ -3,31 +3,31 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-	name: "Laszlo Varga",
 	role: "Web Developer",
+	name: "Laszlo Varga",
 	contacts: {
 		mobile: "0775812345",
 		email: "something@extra.com",
 		github: "https://github.com/Lacika1981",
 		location: "Basingstoke"
 	},
+	biopic: "images/197x148.gif",
 	welcomeMessage: "Welcome on my BIO page",
-	skills: ["HTML", "CSS", "bootstrap", "JavaScript"],
-	biopic: "images/197x148.gif"
+	skills: ["HTML", "CSS", "bootstrap", "JavaScript"]
 }
 
 bio.display = function () {
 	Object.keys(bio).forEach(function (key) {
 		var values = bio[key];
 		switch (key) {
-			case "name":
-				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
-				$("#header").append(HTMLname);
-				break
-
 			case "role":
 				var HTMLrole = HTMLheaderRole.replace("%data%", bio[key]);
-				$("#header").append(HTMLrole);
+				$("#header").prepend(HTMLrole);
+				break
+
+			case "name":
+				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
+				$("#header").prepend(HTMLname);
 				break
 
 			case "welcomeMessage":
@@ -40,7 +40,7 @@ bio.display = function () {
 					$("#header").append(HTMLskillsStart);
 					bio["skills"].forEach(function (x) {
 						var HTMLskill = HTMLskills.replace("%data%", x);
-						$("#header").append(HTMLskill);
+						$("#skills").append(HTMLskill);
 					})
 				}
 				break
@@ -55,22 +55,22 @@ bio.display = function () {
 					switch (contact) {
 						case "mobile":
 							var mobile = HTMLmobile.replace("%data%", bio.contacts[contact]);
-							$("#header").append(mobile);
+							$("#topContacts, #footerContacts").append(mobile);
 							break
 
 						case "email":
 							var email = HTMLemail.replace("%data%", bio.contacts[contact]);
-							$("#header").append(email);
+							$("#topContacts, #footerContacts").append(email);
 							break
 
 						case "github":
 							var github = HTMLgithub.replace("%data%", bio.contacts[contact]);
-							$("#header").append(github);
+							$("#topContacts, #footerContacts").append(github);
 							break
 
 						case "location":
 							var location = HTMLlocation.replace("%data%", bio.contacts[contact]);
-							$("#header").append(location);
+							$("#topContacts, #footerContacts").append(location);
 							break
 					}
 				})
@@ -85,27 +85,27 @@ bio.display();
 var education = {
 	"schools": [
 		{
-			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
-			"location": "Győr, Hungary",
+			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",			
 			"degree": "GCSE",
-			"major": ["Network configuration"],
 			"dates": "2006-2007",
+			"location": "Győr, Hungary",
+			"major": ["Network configuration"],
 			"url": "http://www.jaisz.hu/"
 		},
 		{
 			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
-			"location": "Győr, Hungary",
 			"degree": "GCSE",
-			"major": ["CNC machining", "Microsoft Office"],
 			"dates": "2001-2002",
+			"location": "Győr, Hungary",
+			"major": ["CNC machining", "Microsoft Office"],
 			"url": "http://www.jaisz.hu/"
 		},
 		{
 			"name": "Pápai Református Kollégium Gimnáziuma és Művészeti Szakgimnáziuma",
-			"location": "Pápa, Hungary",
 			"degree": "GCSE",
-			"major": ["Math", "Physics", "Chemistry", "Literal"],
 			"dates": "1995-1999",
+			"location": "Pápa, Hungary",
+			"major": ["Math", "Physics", "Chemistry", "Literal"],
 			"url": "http://http://refi-papa.hu//"
 		}
 	],
@@ -141,10 +141,10 @@ education.display = function () {
 	var HTMLschoolTemplate = [
 		[
 			HTMLschoolName,
-			HTMLschoolLocation,
 			HTMLschoolDegree,
-			HTMLschoolMajor,
 			HTMLschoolDates,
+			HTMLschoolLocation,			
+			HTMLschoolMajor,			
 			HTMLonlineURL
 		],
 		[
@@ -158,16 +158,18 @@ education.display = function () {
 	for (edu in education) {
 		if (typeof education[edu] === "object") {
 			education[edu].forEach(function (schoolR) {
+				var formattedContent = "";
 				$("#education").append(HTMLschoolStart);
 				var keys = Object.keys(schoolR);
 				keys.forEach(function (key, i) {
-					var formattedContent = HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
-					$(".education-entry:last").append(formattedContent);
+					formattedContent += HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
 				})
+				$(".education-entry:last").append(formattedContent);
 			});
 			counter.increment();
 		}
 	}
+	$(".education-entry:last-child").prepend(HTMLonlineClasses);
 }
 education.display();
 

@@ -126,7 +126,6 @@ function initializeMap() {
 
     // initializes an empty array
     var locations = [];
-    console.log(locations);
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location);
@@ -156,8 +155,7 @@ function initializeMap() {
   about a single location.
   */
 
-  function createMapMarker(placeData) {
-    console.log(placeData);
+  function createMapMarker(placeData){
 
     // The next lines save location data from the search result object to local variables
     var lat = placeData.geometry.location.lat();  // latitude from the place service
