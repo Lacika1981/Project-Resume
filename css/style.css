@@ -183,13 +183,13 @@ span {
   }
 }
 
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:992px) {
   .biopic {
     width: 175px;
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 768px) {
   #lets-connect {
     margin-top: 10%;
   }
@@ -213,9 +213,53 @@ span {
   padding-bottom: 5%;
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 768px) {
   #skills-h3,
   .biopic {
     display: block;
   }
 }
+
+
+/*My style*/
+
+.row h2,
+.row h3 {
+  text-align: center;
+}
+
+#skills-h3 {
+  text-align: left;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.project-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 767px) {
+  #skills li {
+    text-align: center;
+  }
+  }
+
+@media only screen and (min-width: 768px) {
+  #header span {
+    margin-top: 10px;
+  }
+  }
+
+  @media only screen and (min-width: 1200px) {
+  #topContacts li {
+    font-size: 13px;
+  }
+  }
