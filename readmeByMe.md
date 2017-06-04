@@ -30,6 +30,9 @@ function changeBy(val) {
 You can find this code at the MDN website.
 You will see why I needed this solution.
 
+Here is the link to the thread what I used to make my questions.
+[Forum](https://discussions.udacity.com/t/biography-quiz-two-placeholder-in-one-line/248996)
+
 I have checked all my code but there may be errors in it.
 
 The style is not great. I am not good at the designing.
