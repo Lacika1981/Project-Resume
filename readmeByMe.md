@@ -31,7 +31,8 @@ You can find this code at the MDN website.
 You will see why I needed this solution.
 
 Here is the link to the thread what I used to make my questions.
-[Forum](https://discussions.udacity.com/t/biography-quiz-two-placeholder-in-one-line/248996)
+[Forum](https://discussions.udacity.com/t/biography-quiz-two-placeholder-in-one-line/248996).
+I provide you with this link because I want you to know that all work is mine. Of course Karol helped me lot but did not provide me with solution.
 
 I have checked all my code but there may be errors in it.
 
