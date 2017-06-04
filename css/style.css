@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Marcellus+SC');
+
 body,
 div,
 ul,
@@ -11,7 +13,7 @@ h5,
 h6 {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Cinzel", sans-serif;
 }
 
 .clear-fix {
@@ -58,6 +60,7 @@ h3,
 h4,
 h5 {
   padding: 10px 5%;
+  font-family: 'Marcellus Sc', serif;
 }
 
 #header h1 + span {
@@ -183,7 +186,7 @@ ul {
   width: 200px;
   display: none;
   position: relative;
-  top: 5px;
+  bottom: 5px;
 }
 
 img {
@@ -247,6 +250,10 @@ span {
   #skills-h3,
   .biopic {
     display: block;
+  }
+
+  .flex-column {
+    flex-direction: row;
   }
 
   #header span {

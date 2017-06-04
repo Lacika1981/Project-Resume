@@ -17,14 +17,14 @@ var bio = {
 	role: "Web Developer",
 	name: "Laszlo Varga",
 	contacts: {
-		mobile: "0775812345",
-		email: "something@extra.com",
+		mobile: "07758398912",
+		email: "vargalaszlo1981@gmail.com",
 		github: "https://github.com/Lacika1981",
 		location: "Basingstoke"
 	},
 	biopic: "images/laszlo-varga.jpg",
 	welcomeMessage: "Welcome on my BIO page",
-	skills: ["HTML", "CSS", "bootstrap", "JavaScript"]
+	skills: ["HTML", "CSS", "Bootstrap", "JavaScript"]
 };
 
 bio.display = function () {
@@ -244,7 +244,7 @@ var projects = {
 			"title": "Build a Portfolio",
 			"dates": "12-05-2017",
 			"description": "First project on Udacity",
-			"images": ["images/project-image-1.png", "images/project-image-1.png"]
+			"images": ["images/project-image-1.jpg", "images/project-image-1.jpg"]
 		}
 	]
 };
