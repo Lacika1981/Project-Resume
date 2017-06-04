@@ -69,6 +69,15 @@ h2,
   letter-spacing: 3px;
 }
 
+hr {
+  width: 100%;
+}
+
+.row h2,
+.row h3 {
+  text-align: center;
+}
+
 .date-text {
   font-style: italic;
   font-size: 14px;
@@ -179,10 +188,23 @@ ul {
 
 img {
   padding: 10px;
+  max-width: 100%;
 }
 
 span {
   padding: 5px;
+}
+
+#map {
+  display: block;
+  height: 100%;
+  margin: 0 5%;
+}
+
+#mapDiv {
+  height: 400px;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
 #lets-connect {
@@ -190,6 +212,12 @@ span {
 }
 
 /* Media queries to handle various device widths */
+
+@media only screen and (max-width: 432px) {
+  #map {
+    height: 90%;
+  }
+}
 
 @media only screen and (max-width: 1024px) {
   #lets-connect {
@@ -215,61 +243,24 @@ span {
   }
 }
 
-#map {
-  display: block;
-  height: 100%;
-  margin: 0 5%;
-}
-
-#mapDiv {
-  height: 400px;
-  width: 100%;
-  padding-bottom: 5%;
-}
-
 @media only screen and (min-width: 768px) {
   #skills-h3,
   .biopic {
     display: block;
   }
-}
 
-
-/*My style*/
-
-.row h2,
-.row h3 {
-  text-align: center;
-}
-
-img {
-  max-width: 100%;
-}
-
-hr {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.project-entry {
-  display: flex;
-  flex-direction: column;
+  #header span {
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
   #skills li {
     text-align: center;
   }
-  }
-
-@media only screen and (min-width: 768px) {
-  #header span {
-    margin-top: 10px;
-  }
-  }
-
-  @media only screen and (min-width: 1200px) {
+}
+@media only screen and (min-width: 1200px) {
   #topContacts li {
     font-size: 13px;
   }
-  }
+}

@@ -1,3 +1,14 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
@@ -11,44 +22,44 @@ var bio = {
 		github: "https://github.com/Lacika1981",
 		location: "Basingstoke"
 	},
-	biopic: "images/197x148.gif",
+	biopic: "images/laszlo-varga.jpg",
 	welcomeMessage: "Welcome on my BIO page",
 	skills: ["HTML", "CSS", "bootstrap", "JavaScript"]
-}
+};
 
 bio.display = function () {
 	Object.keys(bio).forEach(function (key) {
 		var values = bio[key];
 		switch (key) {
 			case "role":
-				var HTMLrole = HTMLheaderRole.replace("%data%", bio[key]);
+				var HTMLrole = HTMLheaderRole.replace("%data%", values);
 				$("#header").prepend(HTMLrole);
-				break
+				break;
 
 			case "name":
-				var HTMLname = HTMLheaderName.replace("%data%", bio[key]);
+				var HTMLname = HTMLheaderName.replace("%data%", values);
 				$("#header").prepend(HTMLname);
-				break
+				break;
 
 			case "welcomeMessage":
-				var HTMLmessage = HTMLwelcomeMsg.replace("%data%", bio[key]);
+				var HTMLmessage = HTMLwelcomeMsg.replace("%data%", values);
 				$("#header").append(HTMLmessage);
-				break
+				break;
 
 			case "skills":
 				if (bio.skills.length > 0) {
 					$("#header").append(HTMLskillsStart);
-					bio["skills"].forEach(function (x) {
+					bio.skills.forEach(function (x) {
 						var HTMLskill = HTMLskills.replace("%data%", x);
 						$("#skills").append(HTMLskill);
-					})
+					});
 				}
-				break
+				break;
 
 			case "biopic":
-				var pic = HTMLbioPic.replace("%data%", bio[key]);
+				var pic = HTMLbioPic.replace("%data%", values);
 				$("#header").append(pic);
-				break
+				break;
 
 			case "contacts":
 				Object.keys(bio.contacts).forEach(function (contact) {
@@ -56,27 +67,27 @@ bio.display = function () {
 						case "mobile":
 							var mobile = HTMLmobile.replace("%data%", bio.contacts[contact]);
 							$("#topContacts, #footerContacts").append(mobile);
-							break
+							break;
 
 						case "email":
 							var email = HTMLemail.replace("%data%", bio.contacts[contact]);
 							$("#topContacts, #footerContacts").append(email);
-							break
+							break;
 
 						case "github":
 							var github = HTMLgithub.replace("%data%", bio.contacts[contact]);
 							$("#topContacts, #footerContacts").append(github);
-							break
+							break;
 
 						case "location":
 							var location = HTMLlocation.replace("%data%", bio.contacts[contact]);
 							$("#topContacts, #footerContacts").append(location);
-							break
+							break;
 					}
-				})
+				});
 		}
-	})
-}
+	});
+};
 
 bio.display();
 
@@ -85,7 +96,7 @@ bio.display();
 var education = {
 	"schools": [
 		{
-			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",			
+			"name": "Jedlik Ányos Gépipari és Informatikai Szakgimnáziuma,Szakközépiskolája és Kollégiuma",
 			"degree": "GCSE",
 			"dates": "2006-2007",
 			"location": "Győr, Hungary",
@@ -117,7 +128,7 @@ var education = {
 			"url": "https://www.udacity.com/"
 		}
 	]
-}
+};
 
 education.display = function () {
 	var counter = (function () {
@@ -143,8 +154,8 @@ education.display = function () {
 			HTMLschoolName,
 			HTMLschoolDegree,
 			HTMLschoolDates,
-			HTMLschoolLocation,			
-			HTMLschoolMajor,			
+			HTMLschoolLocation,
+			HTMLschoolMajor,
 			HTMLonlineURL
 		],
 		[
@@ -155,22 +166,25 @@ education.display = function () {
 		]
 	];
 
-	for (edu in education) {
-		if (typeof education[edu] === "object") {
-			education[edu].forEach(function (schoolR) {
-				var formattedContent = "";
-				$("#education").append(HTMLschoolStart);
-				var keys = Object.keys(schoolR);
-				keys.forEach(function (key, i) {
-					formattedContent += HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
-				})
-				$(".education-entry:last").append(formattedContent);
-			});
-			counter.increment();
+	for (var edu in education) {
+		if (education.hasOwnProperty(edu)) {
+			if (typeof education[edu] === "object") {
+				education[edu].forEach(function (schoolR) {
+					var formattedContent = "";
+					$("#education").append(HTMLschoolStart);
+					var keys = Object.keys(schoolR);
+					keys.forEach(function (key, i) {
+						formattedContent += HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
+					});
+					$(".education-entry:last").append(formattedContent);
+				});
+				counter.increment();
+			}
 		}
 	}
 	$(".education-entry:last-child").prepend(HTMLonlineClasses);
-}
+};
+
 education.display();
 
 
@@ -191,7 +205,7 @@ var work = {
 			"description": "Food distributing"
 		}
 	]
-}
+};
 
 work.display = function () {
 	var HTMLtemplate = [
@@ -219,8 +233,8 @@ work.display = function () {
 				$(".work-entry:last").append(formArray[j]);
 			}
 		}
-	})
-}
+	});
+};
 
 work.display();
 
@@ -233,7 +247,7 @@ var projects = {
 			"images": ["images/project-image-1.png", "images/project-image-1.png"]
 		}
 	]
-}
+};
 
 projects.display = function () {
 
@@ -244,29 +258,31 @@ projects.display = function () {
 		HTMLprojectImage
 	];
 
-	for (project in projects) {
-		$("#projects").append(HTMLprojectStart);
-		if (typeof projects[project] === "object") {
-			projects[project].forEach(function (projectR) {
-				var keys = Object.keys(projectR);
-				keys.forEach(function (key, i) {
-					if (key !== "images") {
-						var formattedContent = HTMLtemplate[i].replace("%data%", projectR[key]);
-						$(".project-entry:last").append(formattedContent);
-					} else {
-						projectR[key].forEach(function (image) {
-							var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
-							$(".project-entry:last").append(formattedImage);
-						})
-					}
-				})
-			})
+	for (var project in projects) {
+		if (projects.hasOwnProperty(project)) {
+			$("#projects").append(HTMLprojectStart);
+			if (typeof projects[project] === "object") {
+				projects[project].forEach(function (projectR) {
+					var keys = Object.keys(projectR);
+					keys.forEach(function (key, i) {
+						if (key !== "images") {
+							var formattedContent = HTMLtemplate[i].replace("%data%", projectR[key]);
+							$(".project-entry:last").append(formattedContent);
+						} else {
+							projectR[key].forEach(function (image) {
+								var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
+								$(".project-entry:last").append(formattedImage);
+							});
+						}
+					});
+				});
+			}
 		}
 	}
-}
+};
 
 projects.display();
 
 (function displayMap() {
-    $("#mapDiv").append(googleMap);
-}())
+	$("#mapDiv").append(googleMap);
+}());
