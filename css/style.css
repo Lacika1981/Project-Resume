@@ -26,7 +26,7 @@ h6 {
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #26ceb9;
   line-height: 48px;
   display: inline;
 }
@@ -58,9 +58,16 @@ h3,
 h4,
 h5 {
   padding: 10px 5%;
-
 }
 
+#header h1 + span {
+  color: lightgrey;
+}
+
+h2,
+.education-entry h3 {
+  letter-spacing: 3px;
+}
 
 .date-text {
   font-style: italic;
@@ -100,8 +107,9 @@ a {
 }
 
 #skills-h3 {
-  color: #f5ae23;
+  color: #26ceb9;
   display: none;
+  text-align: left;
 }
 
 .orange {
@@ -110,6 +118,10 @@ a {
 
 .orange-text {
   color: #f5ae23;
+}
+
+.blue-text {
+  color: #26ceb9;
 }
 
 .white-text {
@@ -129,7 +141,7 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #2e524f;
 }
 
 .flex-box {
@@ -161,6 +173,8 @@ ul {
   padding: 10px;
   width: 200px;
   display: none;
+  position: relative;
+  top: 5px;
 }
 
 img {
@@ -226,10 +240,6 @@ span {
 .row h2,
 .row h3 {
   text-align: center;
-}
-
-#skills-h3 {
-  text-align: left;
 }
 
 img {

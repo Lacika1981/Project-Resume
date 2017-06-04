@@ -15,13 +15,13 @@ replace the %data% placeholder text you see in them.
 var HTMLheaderName = '<h1 id="name" class="col-xs-12 col-sm-6 text-center">%data%</h1>';
 var HTMLheaderRole = '<span class="col-xs-12 text-center col-sm-6">%data%</span><hr>';
 
-var HTMLcontactGeneric = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLmobile = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
-var HTMLemail = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
-var HTMLtwitter = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
-var HTMLblog = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+var HTMLcontactGeneric = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">%contact%</span><span class="white-text">%data%</span></li>';
+var HTMLmobile = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">mobile</span><span class="white-text">%data%</span></li>';
+var HTMLemail = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">email</span><span class="white-text">%data%</span></li>';
+var HTMLtwitter = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">twitter</span><span class="white-text">%data%</span></li>';
+var HTMLgithub = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">github</span><span class="white-text">%data%</span></li>';
+var HTMLblog = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">blog</span><span class="white-text">%data%</span></li>';
+var HTMLlocation = '<li class="flex-item col-xs-12 col-sm-6 col-lg-3"><span class="blue-text">location</span><span class="white-text">%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
