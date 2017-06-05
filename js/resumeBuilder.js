@@ -166,18 +166,20 @@ education.display = function () {
 		]
 	];
 
+	var eduFunction = function (schoolR) {
+		var formattedContent = "";
+		$("#education").append(HTMLschoolStart);
+		var keys = Object.keys(schoolR);
+		keys.forEach(function (key, i) {
+			formattedContent += HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
+		});
+		$(".education-entry:last").append(formattedContent);
+	};
+
 	for (var edu in education) {
 		if (education.hasOwnProperty(edu)) {
 			if (typeof education[edu] === "object") {
-				education[edu].forEach(function (schoolR) {
-					var formattedContent = "";
-					$("#education").append(HTMLschoolStart);
-					var keys = Object.keys(schoolR);
-					keys.forEach(function (key, i) {
-						formattedContent += HTMLschoolTemplate[counter.value()][i].replace("%data%", schoolR[key]);
-					});
-					$(".education-entry:last").append(formattedContent);
-				});
+				education[edu].forEach(eduFunction);
 				counter.increment();
 			}
 		}
@@ -214,7 +216,7 @@ work.display = function () {
 		HTMLworkLocation,
 		HTMLworkDates,
 		HTMLworkDescription
-	]
+	];
 
 	var jobsArray = work.jobs;
 	jobsArray.forEach(function (jobR) {
@@ -258,24 +260,26 @@ projects.display = function () {
 		HTMLprojectImage
 	];
 
+	var projectFunction = function (projectR) {
+		var keys = Object.keys(projectR);
+		keys.forEach(function (key, i) {
+			if (key !== "images") {
+				var formattedContent = HTMLtemplate[i].replace("%data%", projectR[key]);
+				$(".project-entry:last").append(formattedContent);
+			} else {
+				projectR[key].forEach(function (image) {
+					var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
+					$(".project-entry:last").append(formattedImage);
+				});
+			}
+		});
+	};
+
 	for (var project in projects) {
 		if (projects.hasOwnProperty(project)) {
 			$("#projects").append(HTMLprojectStart);
 			if (typeof projects[project] === "object") {
-				projects[project].forEach(function (projectR) {
-					var keys = Object.keys(projectR);
-					keys.forEach(function (key, i) {
-						if (key !== "images") {
-							var formattedContent = HTMLtemplate[i].replace("%data%", projectR[key]);
-							$(".project-entry:last").append(formattedContent);
-						} else {
-							projectR[key].forEach(function (image) {
-								var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
-								$(".project-entry:last").append(formattedImage);
-							});
-						}
-					});
-				});
+				projects[project].forEach(projectFunction);
 			}
 		}
 	}
