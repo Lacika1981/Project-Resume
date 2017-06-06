@@ -89,9 +89,6 @@ bio.display = function () {
 	});
 };
 
-bio.display();
-
-
 
 var education = {
 	"schools": [
@@ -100,7 +97,7 @@ var education = {
 			"degree": "GCSE",
 			"dates": "2006-2007",
 			"location": "Győr, Hungary",
-			"major": ["Network configuration"],
+			"majors": ["Network configuration"],
 			"url": "http://www.jaisz.hu/"
 		},
 		{
@@ -108,7 +105,7 @@ var education = {
 			"degree": "GCSE",
 			"dates": "2001-2002",
 			"location": "Győr, Hungary",
-			"major": ["CNC machining", "Microsoft Office"],
+			"majors": ["CNC machining", "Microsoft Office"],
 			"url": "http://www.jaisz.hu/"
 		},
 		{
@@ -116,7 +113,7 @@ var education = {
 			"degree": "GCSE",
 			"dates": "1995-1999",
 			"location": "Pápa, Hungary",
-			"major": ["Math", "Physics", "Chemistry", "Literal"],
+			"majors": ["Math", "Physics", "Chemistry", "Literal"],
 			"url": "http://http://refi-papa.hu//"
 		}
 	],
@@ -187,8 +184,6 @@ education.display = function () {
 	$(".education-entry:last-child").prepend(HTMLonlineClasses);
 };
 
-education.display();
-
 
 var work = {
 	"jobs": [
@@ -238,7 +233,6 @@ work.display = function () {
 	});
 };
 
-work.display();
 
 var projects = {
 	"projects": [
@@ -276,8 +270,8 @@ projects.display = function () {
 			} else {
 				projectR[key].forEach(function (image) {
 					var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
-					imageAttr(image); //calls the function and pass the "image" as an argument
-					var imageWithAlt = formattedImage.attr("alt", imageText); //add the returned value to the formatted image
+					//imageAttr(image); //calls the function and pass the "image" as an argument
+					var imageWithAlt = $(formattedImage).attr("alt", imageAttr(image)); //add the returned value to the formatted image
 					$(".project-entry:last").append(imageWithAlt);//append it
 				});
 			}
@@ -294,6 +288,10 @@ projects.display = function () {
 	}
 };
 
+
+bio.display();
+education.display();
+work.display();
 projects.display();
 
 (function displayMap() {
