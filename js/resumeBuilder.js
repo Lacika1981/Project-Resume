@@ -58,7 +58,8 @@ bio.display = function () {
 
 			case "biopic":
 				var pic = HTMLbioPic.replace("%data%", values);
-				$("#header").append(pic);
+				var imageWithAlt = $(pic).attr("alt", imageAttr(values));
+				$("#header").append(imageWithAlt);
 				break;
 
 			case "contacts":
@@ -263,7 +264,9 @@ projects.display = function () {
 			} else {
 				projectR[key].forEach(function (image) {
 					var formattedImage = HTMLtemplate[HTMLtemplate.length - 1].replace("%data%", image);
-					$(".project-entry:last").append(formattedImage);
+					//imageAttr(image); //calls the function and pass the "image" as an argument
+					var imageWithAlt = $(formattedImage).attr("alt", imageAttr(image)); //add the returned value to the formatted image
+					$(".project-entry:last").append(imageWithAlt);//append it
 				});
 			}
 		});
@@ -278,6 +281,13 @@ projects.display = function () {
 		}
 	}
 };
+
+var imageAttr = function(x){
+		var imageDot = x.indexOf(".");//check the position of the "dot"
+		var imageSlash = x.indexOf("/");//check the position of the "/"
+		var imageText = x.slice(imageSlash + 1, imageDot);//slice the content
+		return "picture of " + imageText;//return the "value"
+	};
 
 
 bio.display();
